@@ -18,14 +18,22 @@ class _HomeState extends State<Home> {
   String gambar1 =
       "https://tse3.mm.bing.net/th?id=OIP.-cMa2IPG-pecMEzhVIqBEwHaFj&pid=Api&P=0&h=180";
   String gambar2 =
-      "https://tse2.mm.bing.net/th?id=OIP.SP64iNxFPC5qCIwW8KtwAAHaEN&pid=Api&P=0&h=180";
-  String backup;
+      "https://tse2.mm.bing.net/th?id=OIP.90olGr6sqBFTm0SyysnBTQHaEL&pid=Api&P=0&h=180";
+  String backup = "";
+
+  String nama1 = "Dhafa Bintang";
+  String nama2 = "Muh Ali";
+  String backupnama = "";
 
   void gantiuser() {
-    this.setState(() {
+    setState(() {
       backup = gambar1;
       gambar1 = gambar2;
       gambar2 = backup;
+
+      backupnama = nama1;
+      nama1 = nama2;
+      nama2 = backupnama;
     });
   }
 
@@ -40,27 +48,24 @@ class _HomeState extends State<Home> {
         child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Text("Dhafa Bintang"),
+              accountName: Text(nama1),
               accountEmail: Text("dafabintang@gmail.com"),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: NetworkImage(gambar1),
               ),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: NetworkImage(gambar2), fit: BoxFit.cover),
+                    image: NetworkImage(
+                        "https://tse2.mm.bing.net/th?id=OIP.SP64iNxFPC5qCIwW8KtwAAHaEN&pid=Api&P=0&h=180"),
+                    fit: BoxFit.cover),
               ),
               otherAccountsPictures: <Widget>[
                 GestureDetector(
                   onTap: () => gantiuser(),
                   child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://tse4.mm.bing.net/th?id=OIP.YJEXCzcyobIwNCdMMHnhoAHaEr&pid=Api&P=0&h=180"),
+                    backgroundImage: NetworkImage(gambar2),
                   ),
                 ),
-                CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://tse4.mm.bing.net/th?id=OIP.YJEXCzcyobIwNCdMMHnhoAHaEr&pid=Api&P=0&h=180"),
-                )
               ],
             ),
             ListTile(
@@ -70,7 +75,7 @@ class _HomeState extends State<Home> {
             ListTile(
               title: Text("Close"),
               trailing: Icon(Icons.close),
-            )
+            ),
           ],
         ),
       ),
