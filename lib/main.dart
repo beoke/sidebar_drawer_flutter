@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sidebar_drawer_flutter/detail.dart';
+import './detail.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -41,7 +43,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Demo Side Bar (DRAWER)"),
+        title: Text(
+          "Side Bar (DRAWER)",
+          style: TextStyle(fontFamily: "Serif", fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Colors.red[700],
       ),
       drawer: Drawer(
@@ -50,8 +55,18 @@ class _HomeState extends State<Home> {
             UserAccountsDrawerHeader(
               accountName: Text(nama1),
               accountEmail: Text("dafabintang@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: NetworkImage(gambar1),
+              currentAccountPicture: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => Detail(
+                            nama: nama1,
+                            gambar: gambar1,
+                          )));
+                },
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(gambar1),
+                ),
               ),
               decoration: BoxDecoration(
                 image: DecorationImage(
